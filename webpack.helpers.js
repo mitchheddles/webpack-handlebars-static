@@ -6,8 +6,8 @@ function _handlebarsEqualHelper(name, value, options) {
 }
 
 function _handlebarsVariablesHelper(name, options) {
-  var content = options.fn(this);
-  handlebarsContext[name] = content
+  const content = options.fn(this);
+  handlebarsContext[name] = content;
 }
 
 function registerHandlersHelpers(Handlebars) {
@@ -32,4 +32,4 @@ function makeDataReplacements(originalData) {
 module.exports = {
   makeDataReplacements,
   registerHandlersHelpers,
-}
+};

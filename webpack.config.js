@@ -24,7 +24,7 @@ module.exports = {
   output: {
     path: buildDir,
     filename: isProd ? 'bundle.[chunkhash].js' : 'bundle.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -32,53 +32,55 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
           { loader: 'css-loader', options: { importLoaders: 1 } },
-          isProd ? {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: () => [postcssPresetEnv(), cssnano()]
+          isProd
+            ? {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+                plugins: () => [postcssPresetEnv(), cssnano()],
+              },
             }
-          } : null,
-          'sass-loader'
-        ].filter(Boolean)
+            : null,
+          'sass-loader',
+        ].filter(Boolean),
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/,
         use: [
           {
             loader: 'file-loader',
-            options: { name: 'fonts/[name].[ext]' }
-          }
-        ]
+            options: { name: 'fonts/[name].[ext]' },
+          },
+        ],
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: [
           {
-            loader: 'ignore-loader'
-          }
-        ]
-      }
-    ]
+            loader: 'ignore-loader',
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(sourceDir, 'views', 'layout', 'template.hbs'),
       filename: path.join(templateDir, 'template.hbs'),
-      inject: false
+      inject: false,
     }),
     new HandlebarsPlugin({
       htmlWebpackPlugin: {
         enabled: true,
-        prefix: 'html'
+        prefix: 'html',
       },
       entry: path.join(sourceDir, 'views', '*.hbs'),
       output: name => {
@@ -88,26 +90,26 @@ module.exports = {
       data: path.join(sourceDir, 'data', '*.json'),
       partials: [
         path.join(templateDir, 'template.hbs'),
-        path.join(sourceDir, 'views', 'partials', '*.hbs')
+        path.join(sourceDir, 'views', 'partials', '*.hbs'),
       ],
       onBeforeSetup: Handlebars => {
         return registerHandlersHelpers(Handlebars);
       },
       onBeforeRender: (Handlebars, data) => {
         return makeDataReplacements(data);
-      }
+      },
     }),
     new CopyWebpackPlugin([
       {
         from: path.join(sourceDir, 'img'),
-        to: 'img'
-      }
+        to: 'img',
+      },
     ]),
     new MiniCssExtractPlugin({
       filename: isProd ? '[name].[chunkhash].css' : '[name].css',
       chunkFilename: '[id].css',
       fallback: 'style-loader',
-      use: [{ loader: 'css-loader', options: { minimize: true } }]
+      use: [{ loader: 'css-loader', options: { minimize: true } }],
     }),
   ].concat(isProd ? prodPlugins : []),
   devServer: {
@@ -115,7 +117,7 @@ module.exports = {
     compress: true,
     port: 3000,
     watchOptions: {
-      poll: true
-    }
-  }
+      poll: true,
+    },
+  },
 };
