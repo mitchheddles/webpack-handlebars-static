@@ -3438,9 +3438,9 @@ handlebars-layouts@^3.1.4:
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/handlebars-layouts/-/handlebars-layouts-3.1.4.tgz#26b3beb931b4b877dfbf7e6feaf4058ee6228b02"
 
-"handlebars-webpack-plugin@https://github.com/mitchheddles/handlebars-webpack-plugin#dbf3a55":
+"handlebars-webpack-plugin@https://github.com/mitchheddles/handlebars-webpack-plugin#40b0d4a":
   version "1.5.0"
-  resolved "https://github.com/mitchheddles/handlebars-webpack-plugin#dbf3a55f1a9fade0134d362760930d7c99045bb6"
+  resolved "https://github.com/mitchheddles/handlebars-webpack-plugin#40b0d4a633743fce0bd2dfa98cf7b472d55742b1"
   dependencies:
     chalk "^1.1.1"
     fs-extra "^0.26.7"
