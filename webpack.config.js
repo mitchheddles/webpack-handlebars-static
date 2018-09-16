@@ -109,7 +109,7 @@ module.exports = {
       filename: isProd ? '[name].[chunkhash].css' : '[name].css',
       chunkFilename: '[id].css',
       fallback: 'style-loader',
-      use: [{ loader: 'css-loader', options: { minimize: true } }],
+      use: [{ loader: 'css-loader', options: { minimize: isProd } }],
     }),
   ].concat(isProd ? prodPlugins : []),
   devServer: {
