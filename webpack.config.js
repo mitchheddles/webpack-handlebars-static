@@ -10,6 +10,7 @@ const cssnano = require('cssnano');
 const { makeDataReplacements, registerHandlersHelpers } = require('./webpack.helpers.js');
 
 const mode = process.env.NODE_ENV || 'production';
+const PORT = process.env.PORT || 3000;
 
 const sourceDir = path.join(__dirname, 'src');
 const templateDir = path.join(__dirname, 'generated');
@@ -115,7 +116,7 @@ module.exports = {
   devServer: {
     contentBase: buildDir,
     compress: true,
-    port: 3000,
+    port: PORT,
     watchOptions: {
       poll: true,
     },
