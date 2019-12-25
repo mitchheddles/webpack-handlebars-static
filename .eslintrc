@@ -13,8 +13,8 @@
     }
   },
   "globals": {
-    "document": 0,
-    "window": 0
+    "document": false,
+    "window": false
   },
   "rules": {
     "no-empty": 0,
