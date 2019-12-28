@@ -39,7 +39,12 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: !isProd,
+            },
+          },
           { loader: 'css-loader', options: { importLoaders: 1 } },
           isProd
             ? {
@@ -116,9 +121,7 @@ module.exports = {
   devServer: {
     contentBase: buildDir,
     compress: true,
+    hot: true,
     port: PORT,
-    watchOptions: {
-      poll: true,
-    },
   },
 };
