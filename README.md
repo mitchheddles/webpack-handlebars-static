@@ -41,7 +41,7 @@ npm build
 │   ├── views
 │   │   ├── layout
 │   │   │   └── template.hbs
-│   │   ├── paritals
+│   │   ├── partials
 │   │   ├── page.hbs
 │   │   └── index.hbs
 │   └── entry.js
