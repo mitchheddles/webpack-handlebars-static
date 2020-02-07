@@ -124,4 +124,13 @@ module.exports = {
     hot: true,
     port: PORT,
   },
+  stats: {
+    assets: true,
+    children: false,
+    colors: true,
+    entrypoints: false,
+    hash: false,
+    modules: false,
+    version: false,
+  },
 };
