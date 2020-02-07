@@ -71,6 +71,7 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: [
           {
+            // Use the ignore loader because we manually copy image assets using the copy plugin
             loader: 'ignore-loader',
           },
         ],
