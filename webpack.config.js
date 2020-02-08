@@ -121,8 +121,7 @@ module.exports = {
   ].concat(isProd ? prodPlugins : []),
   devServer: {
     contentBase: buildDir,
-    compress: true,
-    hot: true,
+    open: true,
     port: PORT,
   },
   stats: {
