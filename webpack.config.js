@@ -48,12 +48,12 @@ module.exports = {
           { loader: 'css-loader', options: { importLoaders: 1 } },
           isProd
             ? {
-              loader: 'postcss-loader',
-              options: {
-                ident: 'postcss',
-                plugins: () => [postcssPresetEnv(), cssnano()],
-              },
-            }
+                loader: 'postcss-loader',
+                options: {
+                  ident: 'postcss',
+                  plugins: () => [postcssPresetEnv(), cssnano()],
+                },
+              }
             : null,
           'sass-loader',
         ].filter(Boolean),
@@ -90,7 +90,7 @@ module.exports = {
         prefix: 'html',
       },
       entry: path.join(sourceDir, 'views', '*.hbs'),
-      output: name => {
+      output: (name) => {
         const page = name !== 'index' ? name : '';
         return path.join(buildDir, page, 'index.html');
       },
@@ -99,19 +99,24 @@ module.exports = {
         path.join(templateDir, 'template.hbs'),
         path.join(sourceDir, 'views', 'partials', '*.hbs'),
       ],
-      onBeforeSetup: Handlebars => {
+      onBeforeSetup: (Handlebars) => {
         return registerHandlersHelpers(Handlebars);
       },
       onBeforeRender: (Handlebars, data) => {
         return makeDataReplacements(data);
       },
     }),
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin(
+      [
+        {
+          from: path.join(sourceDir, 'img'),
+          to: 'img',
+        },
+      ],
       {
-        from: path.join(sourceDir, 'img'),
-        to: 'img',
+        ignore: ['.DS_Store'],
       },
-    ]),
+    ),
     new MiniCssExtractPlugin({
       filename: isProd ? '[name].[chunkhash].css' : '[name].css',
       chunkFilename: '[id].css',
